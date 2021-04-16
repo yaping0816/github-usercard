@@ -7,7 +7,10 @@ import axios from 'axios'
 axios.get('https://api.github.com/users/yaping0816')
   .then(res =>{
     // debugger
-    console.log(res.data.name)
+    const myCard = cardCreator({imageURL: res.data.avatar_url, name: res.data.name, usersName: res.data.login, usersLocation: res.data.location, address: res.data.url, usersFollowers: res.data.followers, usersFollowing: res.data.following, usersBio: res.data.bio});
+    const cards = document.querySelector('.cards');
+    cards.appendChild(myCard);
+  
   })
   .catch(err =>{
     debugger
@@ -100,13 +103,11 @@ const cardCreator = ({imageURL, name, usersName, usersLocation, address, usersFo
   cardInfo.appendChild(following);
   cardInfo.appendChild(bio);
   
-
-
   return card;
 
 }
 
-console.log(cardCreator({imageURL: '#', name: 'Liu', usersName: 'Chen', usersLocation: 'lacey', address: 'www.google.com', usersFollowers: 'fan1', usersFollowing: 'fan2', usersBio: 'sunny'}))
+// console.log(cardCreator({imageURL: '#', name: 'Liu', usersName: 'Chen', usersLocation: 'lacey', address: 'www.google.com', usersFollowers: 'fan1', usersFollowing: 'fan2', usersBio: 'sunny'}))
 /*
   List of LS Instructors Github username's:
     tetondan
