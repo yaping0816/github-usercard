@@ -65,23 +65,12 @@ const cardCreator = ({imageURL, name, usersName, usersLocation, address, usersFo
   const cardTitle = document.createElement('h3');
   const userName = document.createElement('p');
   const location = document.createElement('p');
+  const aa = document.createElement('a');
   const profile = document.createElement('p');
-  const a = document.createElement('a');
   const followers = document.createElement('p');
   const following = document.createElement('p');
   const bio = document.createElement('p');
-  // structure the elements
-  card.appendChild(img);
-  card.appendChild(cardInfo);
-  cardInfo.appendChild(cardTitle);
-  cardInfo.appendChild(userName);
-  cardInfo.appendChild(location);
-  cardInfo.appendChild(profile);
-  profile.appendChild(a);
-  cardInfo.appendChild(followers);
-  cardInfo.appendChild(following);
-  cardInfo.appendChild(bio);
-  
+
   // add class name and attribute
   card.classList.add('card');
   img.src = imageURL;
@@ -92,16 +81,32 @@ const cardCreator = ({imageURL, name, usersName, usersLocation, address, usersFo
   userName.textContent = usersName;
   location.textContent = 'Location: ' + usersLocation;
   profile.textContent = 'Profile:';
-  a.setAttribute('href', address);
+  aa.setAttribute('href', address);
+  aa.textContent = address;
   followers.textContent = 'Followers: ' + usersFollowers;
   following.textContent = 'Following: ' + usersFollowing;
   bio.textContent = 'Bio: ' + usersBio;
+
+
+  // structure the elements
+  card.appendChild(img);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(cardTitle);
+  cardInfo.appendChild(userName);
+  cardInfo.appendChild(location);
+  cardInfo.appendChild(profile);
+  profile.appendChild(aa);
+  cardInfo.appendChild(followers);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(bio);
+  
+
 
   return card;
 
 }
 
-// console.log(cardCreator({imageURL: '#', name: 'Liu', usersName: 'Chen', usersLocation: 'lacey', address: '3333 lanyaed dr', usersFollowers: 'fan1', usersFollowing: 'fan2', usersBio: 'sunny'}))
+console.log(cardCreator({imageURL: '#', name: 'Liu', usersName: 'Chen', usersLocation: 'lacey', address: 'www.google.com', usersFollowers: 'fan1', usersFollowing: 'fan2', usersBio: 'sunny'}))
 /*
   List of LS Instructors Github username's:
     tetondan
