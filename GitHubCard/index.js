@@ -7,10 +7,9 @@ import axios from 'axios'
 axios.get('https://api.github.com/users/yaping0816')
   .then(res =>{
     // debugger
-    const myCard = cardCreator({imageURL: res.data.avatar_url, name: res.data.name, usersName: res.data.login, usersLocation: res.data.location, address: res.data.url, usersFollowers: res.data.followers, usersFollowing: res.data.following, usersBio: res.data.bio});
+    const myCard = cardCreator({imageURL: res.data.avatar_url, name: res.data.name, usersName: res.data.login, usersLocation: res.data.location, address: res.data.html_url, usersFollowers: res.data.followers, usersFollowing: res.data.following, usersBio: res.data.bio});
     const cards = document.querySelector('.cards');
     cards.appendChild(myCard);
-  
   })
   .catch(err =>{
     debugger
@@ -39,7 +38,18 @@ axios.get('https://api.github.com/users/yaping0816')
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['DanielleKoduru', 'tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+followersArray.forEach(each =>{
+  axios.get(`https://api.github.com/users/${each}`)
+  .then(res =>{
+    const newCard = cardCreator({imageURL: res.data.avatar_url, name: res.data.name, usersName: res.data.login, usersLocation: res.data.location, address: res.data.html_url, usersFollowers: res.data.followers, usersFollowing: res.data.following, usersBio: res.data.bio});
+    const cards = document.querySelector('.cards');
+    cards.appendChild(newCard);
+  })
+  .catch(err =>{
+    console.log(err);
+  })
+})
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
